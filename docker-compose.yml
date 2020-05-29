@@ -6,10 +6,12 @@ services:
     build: .
     container_name: mediawiki_wiki
     environment:
-      MEDIAWIKI_SERVER: http://localhost:8080
-      MEDIAWIKI_SITENAME: MyWiki
-      MEDIAWIKI_LANGUAGE_CODE: en
+      MEDIAWIKI_SERVER: ${WIKI_SERVER}
+      WIKI_CLEAN_SERVER: ${WIKI_CLEAN_SERVER}
+      MEDIAWIKI_SITENAME: ${WIKI_NAME}
+      MEDIAWIKI_LANGUAGE_CODE: es
       MEDIAWIKI_SECRET_KEY: ${SECRET_KEY}
+      WIKI_SERVER_PARSOID: ${WIKI_SERVER_PARSOID}
       #MEDIAWIKI_META_NAMESPACE: MyNamespace
       MEDIAWIKI_DB_TYPE: mysql
       MEDIAWIKI_DB_HOST: mediawiki_mysql
@@ -41,7 +43,7 @@ services:
       PHPFPM_WORKERS_MAX: 20
       PARSOID_WORKERS: 1
     ports:
-    - 127.0.0.1:8080:8080
+    - 127.0.0.1:80:8080
     depends_on:
     - mediawiki_mysql
     volumes:
